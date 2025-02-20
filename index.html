@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diwali Crackers Order Form</title>
+    <h2><centre>MK FIRE CRACKERS</centre></h2>
+    <style>
+        body {
+            background-color: #ffe5b6;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label, input {
+            margin-bottom: 10px;
+        }
+
+        .cracker-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            margin-left: 10px;
+        }
+
+        .total-price {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .final-price {
+            font-size: 1.5em; /* Increased font size for final price */
+            color: #d9534f;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .address-container {
+            margin-bottom: 20px;
+        }
+
+        .address-container label {
+            font-weight: bold;
+        }
+
+        .address-input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+    <style>
+        .cracker-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+      
+        .cracker-item label {
+          flex: 1;
+          margin-right: 10px;
+        }
+      
+        .cracker-item input[type="number"] {
+          width: 80px;
+          text-align: left;
+        }
+      </style>
+      
+    <script>
+        function calculateTotal() {
+            let total = 0;
+            let prices = {
+                "cracker1": 1999,
+                "cracker2": 1200,
+                "cracker3": 699,
+                "cracker4": 599,
+                "cracker5": 499,
+                "cracker6": 350,
+                "cracker7": 250,
+                "cracker8": 399,
+                "cracker9": 750,
+                "cracker10": 1999,
+                "cracker11": 3499,
+                "cracker12": 99,
+                "cracker13": 30,
+                "cracker14": 30,
+                "cracker15": 20,
+                "cracker16": 50,
+                "cracker17": 60,
+                "cracker18": 150,
+                "cracker19": 299,
+                "cracker20": 70,
+                "cracker21": 20,
+                "cracker22": 50,
+                "cracker23": 70,
+                "cracker24": 80,
+                "cracker25": 90,
+                "cracker26": 50,
+                "cracker27": 120,
+                "cracker28": 230,
+                "cracker29": 499,
+                "cracker30": 50,
+                "cracker31": 350,
+                "cracker32": 650,
+                "cracker33": 150,
+                "cracker34": 599,
+                "cracker35": 350,
+                "cracker36": 120,
+                "cracker37": 99,
+                "cracker38":120,
+                
+            };
+
+            for (let i = 1; i <= 37; i++) {
+                const crackerId = `cracker${i}`;
+                const crackerQtyId = `${crackerId}Qty`;
+                if (document.getElementById(crackerId).checked) {
+                    total += document.getElementById(crackerQtyId).value * prices[crackerId];
+                }
+            }
+
+            // Calculate discount
+            const discount = total * 0.10;
+            const finalPrice = total - discount;
+
+            document.getElementById('totalPrice').innerText = 'Total before discount: ₹' + total;
+            document.getElementById('finalPrice').innerText = 'Final Price after 10% discount: ₹' + finalPrice;
+            document.getElementById('savedAmount').innerText = 'You have saved ₹' + discount.toFixed(2);
+        }
+
+        function sendOrder() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            const plotNo = document.getElementById('plotNo').value;
+            const street = document.getElementById('street').value;
+            const landmark = document.getElementById('landmark').value;
+            const area = document.getElementById('area').value;
+
+            let message = `Order Details:%0AName: ${name}%0APhone: ${phone}%0AAddress:%0APlot No: ${plotNo}%0AStreet/Colony: ${street}%0ALandmark: ${landmark}%0AArea: ${area}%0A`;
+
+            const crackerNames = [
+                "120 Shorts (₹1999)",
+                "60 Shorts (₹1200)",
+                "30 Shorts (₹699)",
+                "25 Shorts (₹599)",
+                "15 Shorts (₹499)",
+                "12 Shorts (₹350)",
+                "500 Wala (₹250)",
+                "1k Wala (₹399)",
+                "2k Wala (₹750)",
+                "5k Wala(₹1999)",
+                "10k Wala (₹3499)",
+                "24 Chorsa wala(each packet) (₹99)",
+                "28 Chorsa wala(each packet) (₹30)",
+                "4 inch Laxmi bomb(pack of 5pcs)  (₹30)",
+                " Laxmi bird(pack of 5pcs) (₹20)",
+                "Laxmi Jumbo Delux(pack of 5pcs) (₹50)",
+                "Laxmi Jurassic Jumbo(pack of 5pcs) (₹60)",
+                "Hitech Bomb (per box: ₹150)",
+                "Large Hitech Delux Bomb (1 box) (₹299)",
+                "Bedi Bomb(1 pack) (₹70)",
+                "Electric Sparkles(7cm) (per box: ₹20)",
+                "Electric Sparkles(12cm) (per box: ₹50)",
+                "Electric Sparkles(15cm) (per box: ₹70)",
+                "Plain Sparkles(30cm) (per box: ₹80)",
+                "Colour Sparkles(30cm) (per box: ₹90)",
+                "Flower Pot Small (per box: ₹50)",
+                "Flower Pot Medium (per box: ₹120)",
+                "Flower Pot Ashoka (per box: ₹230)",
+                "Flower Pot delux  (per box: ₹499)",
+                "Medium Kit-Kat (per box: ₹50)",
+                "Murgan Special Peacock (per box: ₹350)",
+                "Shaadi ki Bharath Big (per box: ₹650)",
+                "Prince Rocket Small (per box: ₹150)",
+                "Whistling Rocket Big (per box: ₹599)",
+                "Lunik Rocket  (per box: ₹350)",
+                "Ground Chakkar Medium(pack of 25pcs)  (₹120)",
+                "Ground Chakkar Ashoka  (per box: ₹99)",
+                "Ground Chakkar Special  (per box: ₹150)"
+
+        ];
+
+            for (let i = 1; i <= 37; i++) {
+                const crackerId = `cracker${i}`;
+                const crackerQtyId = `${crackerId}Qty`;
+                if (document.getElementById(crackerId).checked) {
+                    message += `Cracker ${i} - ${crackerNames[i - 1]} - Qty: ${document.getElementById(crackerQtyId).value}%0A`;
+                }
+            }
+
+            const total = document.getElementById('totalPrice').innerText;
+            const finalPrice = document.getElementById('finalPrice').innerText;
+            const savedAmount = document.getElementById('savedAmount').innerText;
+
+            message += `%0A${total}%0A${finalPrice}%0A${savedAmount}`;
+
+            const whatsappUrl = `https://wa.me/?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Diwali Crackers Order Form</h2>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" placeholder="Enter your phone number" required>
+
+        <div class="address-container">
+            <label>Address:</label>
+            <input type="text" id="plotNo" class="address-input" placeholder="Plot No" required>
+            <input type="text" id="street" class="address-input" placeholder="Street/Colony" required>
+            <input type="text" id="landmark" class="address-input" placeholder="Landmark" required>
+            <input type="text" id="area" class="address-input" placeholder="Area" required>
+        </div>
+
+        <h3>Select Crackers:</h3>
+        <ol>
+            <h4>SHOTS</h4> <h5>(Enter quantity in the box provided)</h5>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker1" onchange="calculateTotal()">
+                <label for="cracker1">120 Shorts (₹1999)</label>
+                <input type="number" id="cracker1Qty" min="0" placeholder="Enter quantity" style="width: 150px;" onchange="calculateTotal()">
+            </li>
+            
+            <!-- Add the rest of the cracker items similarly -->
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker2" onchange="calculateTotal()">
+                <label for="cracker2">60 Shorts (₹1200)</label>
+                <input type="number" id="cracker2Qty" min="0" value="0"  onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker3" onchange="calculateTotal()">
+                <label for="cracker3">30 Shorts(₹699)</label>
+                <input type="number" id="cracker3Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker4" onchange="calculateTotal()">
+                <label for="cracker4">25 Shorts (₹599)</label>
+                <input type="number" id="cracker4Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker5" onchange="calculateTotal()">
+                <label for="cracker5">15 Shorts (₹499)</label>
+                <input type="number" id="cracker5Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker6" onchange="calculateTotal()">
+                <label for="cracker6">12 Shorts (₹350)</label>
+                <input type="number" id="cracker6Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            
+            <h4>WALA</h4>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker7" onchange="calculateTotal()">
+                <label for="cracker7">500 Wala (₹250)</label>
+                <input type="number" id="cracker7Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker8" onchange="calculateTotal()">
+                <label for="cracker8">1k Wala (₹399)</label>
+                <input type="number" id="cracker8Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker9" onchange="calculateTotal()">
+                <label for="cracker9">2k Wala (₹750)</label>
+                <input type="number" id="cracker9Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker10" onchange="calculateTotal()">
+                <label for="cracker10">5k Wala(₹1999)</label>
+                <input type="number" id="cracker10Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker11" onchange="calculateTotal()">
+                <label for="cracker11">10k Wala (₹3499)</label>
+                <input type="number" id="cracker11Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker12" onchange="calculateTotal()">
+                <label for="cracker12">24 Chorsa wala(each packet) (₹99)</label>
+                <input type="number" id="cracker12Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker13" onchange="calculateTotal()">
+                <label for="cracker13">28 Chorsa wala(each packet) (₹30)</label>
+                <input type="number" id="cracker13Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            
+            <h4>BOMB'S</h4>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker14" onchange="calculateTotal()">
+                <label for="cracker14"> 4 inch Laxmi bomb(pack of 5pcs)  (₹30)</label>
+                <input type="number" id="cracker14Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker15" onchange="calculateTotal()">
+                <label for="cracker15"> Laxmi bird(pack of 5pcs) (₹20)</label>
+                <input type="number" id="cracker15Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker16" onchange="calculateTotal()">
+                <label for="cracker16">Laxmi Jumbo Delux(pack of 5pcs) (₹50)</label>
+                <input type="number" id="cracker16Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker17" onchange="calculateTotal()">
+                <label for="cracker17">Laxmi Jurassic Jumbo(pack of 5pcs) (₹60)</label>
+                <input type="number" id="cracker17Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker18" onchange="calculateTotal()">
+                <label for="cracker18"> Hitech Bomb (per box: ₹150)</label>
+                <input type="number" id="cracker18Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker19" onchange="calculateTotal()">
+                <label for="cracker19">Large Hitech Delux Bomb (1 box) (₹299)</label>
+                <input type="number" id="cracker19Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker20" onchange="calculateTotal()">
+                <label for="cracker20">Bedi Bomb(1 pack) (₹70)</label>
+                <input type="number" id="cracker20Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <h4>SPARKLES</h4>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker21" onchange="calculateTotal()">
+                <label for="cracker21">Electric Sparkles(7cm) (per box: ₹20)</label>
+                <input type="number" id="cracker21Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker22" onchange="calculateTotal()">
+                <label for="cracker22">Electric Sparkles(12cm) (per box: ₹50)</label>
+                <input type="number" id="cracker22Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker23" onchange="calculateTotal()">
+                <label for="cracker23">Electric Sparkles(15cm) (per box: ₹70)</label>
+                <input type="number" id="cracker23Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker24" onchange="calculateTotal()">
+                <label for="cracker24">Plain Sparkles(30cm) (per box: ₹80)</label>
+                <input type="number" id="cracker24Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker25" onchange="calculateTotal()">
+                <label for="cracker25">Colour Sparkles(30cm) (per box: ₹90)</label>
+                <input type="number" id="cracker25Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <h4>FLOWER POTS</h4>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker26" onchange="calculateTotal()">
+                <label for="cracker26">Flower Pot Small (per box: ₹50)</label>
+                <input type="number" id="cracker26Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker27" onchange="calculateTotal()">
+                <label for="cracker27">Flower Pot Medium (per box: ₹120)</label>
+                <input type="number" id="cracker27Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker28" onchange="calculateTotal()">
+                <label for="cracker28">Flower Pot Ashoka (per box: ₹230)</label>
+                <input type="number" id="cracker28Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker29" onchange="calculateTotal()">
+                <label for="cracker29">Flower Pot delux  (per box: ₹499)</label>
+                <input type="number" id="cracker29Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker30" onchange="calculateTotal()">
+                <label for="cracker30">Medium Kit-Kat (per box: ₹50)</label>
+                <input type="number" id="cracker30Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker31" onchange="calculateTotal()">
+                <label for="cracker31">Murgan Special Peacock (per box: ₹350)</label>
+                <input type="number" id="cracker31Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker32" onchange="calculateTotal()">
+                <label for="cracker32">Shaadi ki Bharath Big (per box: ₹650)</label>
+                <input type="number" id="cracker32Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <h4> ROCKETS</h4>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker33" onchange="calculateTotal()">
+                <label for="cracker33">Prince Rocket Small (per box: ₹150)</label>
+                <input type="number" id="cracker33Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker34" onchange="calculateTotal()">
+                <label for="cracker34">Whistling Rocket Big (per box: ₹599)</label>
+                <input type="number" id="cracker34Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker35" onchange="calculateTotal()">
+                <label for="cracker35">Lunik Rocket  (per box: ₹350)</label>
+                <input type="number" id="cracker35Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <h4>SPINNERS</h4>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker36" onchange="calculateTotal()">
+                <label for="cracker36">Ground Chakkar Medium(pack of 25pcs)  (₹120)</label>
+                <input type="number" id="cracker36Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker37" onchange="calculateTotal()">
+                <label for="cracker37">Ground Chakkar Ashoka  (per box: ₹99)</label>
+                <input type="number" id="cracker37Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+            <li class="cracker-item">
+                <input type="checkbox" id="cracker38" onchange="calculateTotal()">
+                <label for="cracker38">Ground Chakkar Special  (per box: ₹150)</label>
+                <input type="number" id="cracker38Qty" min="0" value="0" onchange="calculateTotal()">
+            </li>
+
+            
+            
+        </ol>
+
+        <h3 class="total-price" id="totalPrice">Total before discount: ₹0</h3>
+        <h3 class="total-price final-price" id="finalPrice">Final Price after 10% discount: ₹0</h3>
+        <h3 class="total-price" id="savedAmount">You have saved ₹0</h3>
+
+        <button onclick="sendOrder()">Submit Order via WhatsApp</button>
+        <h5>Kindly check all your selections before ordering</h5>
+        <h3>Whatsapp number : 9701301326</h3>
+        <h5>ALSO DON'T FORGET TO EXPLORE OUR SPECIAL BUNDLE PACKS </h5>
+    </div>
+</body>
+</html>
